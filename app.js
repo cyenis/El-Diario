@@ -17,7 +17,7 @@ const MongoStore = require('connect-mongo')(session);
 const configurePassport = require('./helpers/passport');
 const index = require('./routes/index');
 const auth = require('./routes/auth');
-const posts = require("./routes/posts");
+const add = require("./routes/add");
 
 const app = express();
 
@@ -62,7 +62,6 @@ app.use(expressLayouts);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main');
-// app.use("/posts", posts);
 
 
 
@@ -90,6 +89,8 @@ app.use((req, res, next) => {
 // -- routes
 app.use('/', index);
 app.use('/auth', auth);
+app.use('/add', add);
+
 
 
 // -- 404 and error handler

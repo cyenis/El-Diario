@@ -12,16 +12,17 @@ const post = require('../models/post').Post;
 
 router.use((req, res, next) => {
     if (req.user && req.path !== '/logout') {
-        res.redirect('/');
+        next();
     }
-    next();
+    res.redirect('/');
 });
 
-router.get('/add/new', function (req, res, next) {
-    const data = {
-        message: req.flash('error')
-    };
-    res.render('posts/new', data);
+router.get('/', function (req, res, next) {
+    res.render('posts/add', { title: 'El-Diario' });
+});
+
+router.get('/new', function (req, res, next) {
+    res.render('posts/newpost');
 });
 
 // router.get("/new", (req, res, next) => {

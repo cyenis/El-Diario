@@ -13,9 +13,7 @@ router.get('/menu', function (req, res, next) {
 });
 
 
-router.get('/add', function (req, res, next) {
-  res.render('add', { title: 'El-Diario' });
-});
+
 
 
 module.exports = router;
