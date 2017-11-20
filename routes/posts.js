@@ -4,13 +4,11 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
-const ensureLogin = require("connect-ensure-login");
+// const ensureLogin = require("connect-ensure-login");
 
 const user = require('../models/user').User;
 const post = require('../models/post').Post;
 
-
-const bcryptSalt = 10;
 
 router.use((req, res, next) => {
     if (req.user && req.path !== '/logout') {
@@ -19,11 +17,11 @@ router.use((req, res, next) => {
     next();
 });
 
-router.get('/', function (req, res, next) {
+router.get('/add/new', function (req, res, next) {
     const data = {
         message: req.flash('error')
     };
-    res.render('posts/index/', data);
+    res.render('posts/new', data);
 });
 
 // router.get("/new", (req, res, next) => {

@@ -10,16 +10,36 @@
     <p>logged in as
       <%=user.username%>
     </p>
+
     <a href="/">
       <button name="button" class='button'>Home</button>
     </a>
+
+    <a href="/menu">
+      <button name="button" class='button'>Menu</button>
+    </a>
+
+    <a href="/add">
+      <button name="button" class='button'>Add</button>
+    </a>
+
+    <a href="/auth/signup">
+      <button name="button" class='button'>SignUp</button>
+    </a>
+    <a href="/posts">
+      <button name="button" class='button'>Posts</button>
+    </a>
+    <a href="/auth/login">
+      <button name="button" class='button'>Login</button>
+    </a>
+
     <form action="/auth/logout" method="post">
       <button>logout</button>
     </form>
     <% } %>
       <hr/>
       <%- body %>
-        <hr/> @copy; ironhack 2017
+        <hr/> Copyright © 2017 Jordi & Constantinos
 </body>
 
 </html>

@@ -8,10 +8,8 @@ const userSchema = new Schema({
     password: String,
     name: String,
     email: String,
-    photo: String
-    // @todo add name
-    // @todo add email
     // @todo add posts,photos-id
+    // @todo add markers 
     // @todo add profile picture
     // @todo add groups 
     // @todo favorites

@@ -5,9 +5,9 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 
-const ensureLogin = require("connect-ensure-login");
+// const ensureLogin = require("connect-ensure-login");
 
-const user = require('../models/user').User;
+const User = require('../models/user').User;
 
 const bcryptSalt = 10;
 
@@ -27,7 +27,7 @@ router.get('/login', function (req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/menu',
     failureRedirect: '/auth/signup',
     failureFlash: true,
     passReqToCallback: true
@@ -47,7 +47,6 @@ router.post('/signup', (req, res, next) => {
     const password = req.body.password;
     const name = req.body.name;
     const email = req.body.email;
-    const photo = req.body.photo;
 
     if (username === '' || password === '') {
         const data = {
@@ -78,8 +77,7 @@ router.post('/signup', (req, res, next) => {
             username,
             password: hashPass,
             name,
-            email,
-            photo
+            email
         });
 
         newUser.save((err) => {
@@ -89,7 +87,7 @@ router.post('/signup', (req, res, next) => {
             }
 
             req.login(newUser, () => {
-                res.redirect('/');
+                res.redirect('/menu');
             });
         });
     });
