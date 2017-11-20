@@ -32,11 +32,13 @@ router.get('/', (req, res, next) => {
           res.render('posts/index',
             {
               username: user.username,
-              name: user.name,
               posts,
+              moment,
+
+              name: user.name,
               title: posts.title,
-              content: posts.content,
-              moment
+              content: posts.content
+
             });
         });
     });
