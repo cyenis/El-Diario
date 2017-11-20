@@ -1,1 +1,7 @@
 node_modules
+<<<<<<< HEAD
+=======
+public/uploads
+.env
+.DS_Store
+>>>>>>> e1212f9c46de5067dd130b69ebf59d22136e6675
