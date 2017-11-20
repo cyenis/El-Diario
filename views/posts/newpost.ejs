@@ -16,11 +16,37 @@
 
     <br>
     <div>
-        Hello add your stuff
+        Hello
+        <%= user.username%> what's on your mind?
     </div>
     <br>
     <br>
 
+    <div id="container">
+
+        <form action="/add/new" method="POST" id="new-post">
+            <label for="postTitle">Title</label>
+            <br>
+            <input type="text" name="postTitle" maxlength="140" placeholder="Read this!!!">
+            <br>
+            <label for="postContent">Content</label>
+            <br>
+            <input type="text" name="postContent" maxlength="600" placeholder="What's going on?">
+            <!-- <textarea rows="4" cols="50" placeholder="What's going on?" name="postText"> 
+            </textarea> -->
+            <br>
+            <label for="cover-photo">Cover photo:</label>
+            <input id="file" type="file" name="photo" capture="camera" accept=" image/* ">
+            <br>
+            <button class="button">Post!</button>
+        </form>
+
+        <% if (typeof(errorMessage) != "undefined") { %>
+            <div class="error-message">
+                <%= errorMessage %>
+            </div>
+            <% } %>
+    </div>
 
 
 </body>
@@ -31,36 +57,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div id="container">
-    <h2>Hi @
-        <%= username %>!</h2>
-
-    <form action="/posts" method="POST" id="new-post">
-        <label for="postText">Post</label>
-        <input type="text" name="postText" maxlength="140" placeholder="What's going on?">
-        <button class="button blue fright">Post!</button>
-    </form>
-
-    <% if (typeof(errorMessage) != "undefined") { %>
-        <div class="error-message">
-            <%= errorMessage %>
-        </div>
-        <% } %>
-</div> -->
