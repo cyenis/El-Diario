@@ -4,6 +4,8 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
+const moment = require('moment');
+
 // const ensureLogin = require("connect-ensure-login");
 
 const User = require('../models/user').User;
@@ -42,7 +44,7 @@ router.post('/new', (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.redirect('/menu');
+      res.redirect('/timeline');
     });
   });
 });

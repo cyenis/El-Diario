@@ -5,9 +5,14 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
 
-  title: String,
-
-  content: String,
+  title: {
+    type: String,
+    required: [true, "Title can't be empty"]
+  },
+  content: {
+    type: String,
+    required: [true, "Content can't be empty"]
+  },
 
   user_id: {
     type: Schema.Types.ObjectId,
