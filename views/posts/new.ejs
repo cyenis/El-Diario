@@ -1,0 +1,16 @@
+<div id="container">
+  <h2>Hi @
+    <%= username %>!</h2>
+
+  <form action="/posts" method="POST" id="new-post">
+    <label for="postText">Post</label>
+    <input type="text" name="tweetText" maxlength="140" placeholder="What's going on?">
+    <button class="button blue fright">Post!</button>
+  </form>
+
+  <% if (typeof(errorMessage) != "undefined") { %>
+    <div class="error-message">
+      <%= errorMessage %>
+    </div>
+    <% } %>
+</div>

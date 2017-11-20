@@ -1,0 +1,40 @@
+<h1>Signup</h1>
+
+<form action="/auth/signup" method="POST">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+
+    </div>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name">
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="text" name="email">
+        <h2>Upload your photo</h2>
+        <label for="photo">Profile photo:</label>
+        <input id="file" type="file" name="photo" capture="camera" accept=" image/* ">
+
+
+    </div>
+    <div>
+        <input type="submit" value="Signup">
+        <% if (message) { %>
+            <p>
+                <%= message %>
+            </p>
+            <% } %>
+    </div>
+    <p>If you already have an account, you can
+        <a href="/auth/login">Login here</a>.</p>
+</form>
+
+<a href="/">
+    <button name="button" class='button'>Home</button>
+</a>
