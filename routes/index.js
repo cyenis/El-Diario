@@ -12,8 +12,4 @@ router.get('/menu', function (req, res, next) {
   res.render('menu', { title: 'El-Diario' });
 });
 
-
-
-
-
 module.exports = router;

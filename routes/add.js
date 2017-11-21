@@ -27,6 +27,16 @@ router.get('/new', function (req, res, next) {
   res.render('posts/newpost', { user: req.user });
 });
 
+/* GET ONE post */
+router.get('/new/:postID', (req, res, next) => {
+  const pID = req.params.postID;
+  console.log(pID);
+  Post.findById(pID, (err, post) => {
+    if (err) { return next(err); }
+    res.render('posts/show', {post: post});
+  });
+});
+
 router.post('/new', (req, res, next) => {
   const user = req.user;
   User.findOne({ username: user.username }).exec((err, user) => {
