@@ -10,7 +10,7 @@
 <body>
     <h1>
     </h1>
-    <p>Welcome to Add blogpost
+    <p>Welcome to edit Product
     </p>
 
 
@@ -24,19 +24,25 @@
 
     <div id="container">
 
-        <form action="/add/new" method="POST" id="new-post">
+        <form action="/add/new/<%= post.id%>" method="POST" id="edit-post">
             <label for="postTitle">Title</label>
             <br>
-            <input type="text" name="postTitle" maxlength="140" placeholder="Read this!!!">
+            <input type="text" name="postTitle" maxlength="140" value=<%=post.title%>>
             <br>
             <label for="postContent">Content</label>
             <br>
-            <textarea rows="4" cols="50" name="postContent" placeholder="What's going on?"></textarea>
+
+            <!-- <input type="text" name="postContent" maxlength="600" class="postContent" value=<%=post.content%>>
+            <br> -->
+
+            <textarea rows="4" cols="50" name="postContent" maxlength="600" class="postContent"><%=post.content%>
+            </textarea>
+
             <br>
             <label for="cover-photo">Cover photo:</label>
             <input id="file" type="file" name="photo" capture="camera" accept=" image/* ">
             <br>
-            <button class="button">Post!</button>
+            <button class="button">Update</button>
         </form>
 
         <% if (typeof(errorMessage) != "undefined") { %>
@@ -45,11 +51,6 @@
             </div>
             <% } %>
     </div>
-
-
-</body>
-
-</html>
 
 
 </body>

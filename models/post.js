@@ -6,12 +6,16 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
 
   title: {
-    type: String,
-    required: [true, "Title can't be empty"]
+    type: String
+    // required: [true, "Title can't be empty"]
   },
   content: {
-    type: String,
-    required: [true, "Content can't be empty"]
+    type: String
+    // required: [true, "Content can't be empty"]
+  },
+  imgURL: {
+    type: String
+    // required: [true, "Content can't be empty"]
   },
 
   user_id: {

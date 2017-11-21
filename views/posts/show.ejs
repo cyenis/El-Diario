@@ -23,9 +23,22 @@
     <br>
 
     <div id="container">
-        <%= post.title%></br><%= post.contente%>
-       
+        Title:
+        <br>
+        <%= post.title%>
+            </br>
+            Content:
+            <br>
+            <%= post.content %>
+
+
     </div>
+
+    <a href="/add/new/<%= post.id%>/edit/">Edit Post</a>
+
+    <form action="<%= post.id%>/delete/" method="POST">
+        <button type="submit">Delete Post</button>
+    </form>
 
 
 </body>

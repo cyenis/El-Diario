@@ -11,6 +11,8 @@ const moment = require('moment');
 const User = require('../models/user').User;
 const Post = require('../models/post').Post;
 
+// Protect private links
+
 router.use((req, res, next) => {
   if (req.user && req.path !== '/logout') {
     return next();
@@ -19,23 +21,17 @@ router.use((req, res, next) => {
   }
 });
 
+// Redirect to ADD
 router.get('/', function (req, res, next) {
   res.render('posts/add', { title: 'El-Diario' });
 });
 
+// Redirect to add new post form
 router.get('/new', function (req, res, next) {
   res.render('posts/newpost', { user: req.user });
 });
 
-/* GET ONE post */
-router.get('/new/:postID', (req, res, next) => {
-  const pID = req.params.postID;
-  console.log(pID);
-  Post.findById(pID, (err, post) => {
-    if (err) { return next(err); }
-    res.render('posts/show', {post: post});
-  });
-});
+/* ADD ONE post */
 
 router.post('/new', (req, res, next) => {
   const user = req.user;
@@ -56,6 +52,59 @@ router.post('/new', (req, res, next) => {
       }
       res.redirect('/timeline');
     });
+  });
+});
+
+/* SHOW ONE post */
+router.get('/new/:postID', (req, res, next) => {
+  const pID = req.params.postID;
+  console.log(pID);
+  Post.findById(pID, (err, post) => {
+    if (err) { return next(err); }
+    res.render('posts/show', { post: post });
+  });
+});
+
+/* EDIT ONE post */
+router.get('/new/:postID/edit', (req, res, next) => {
+  const pID = req.params.postID;
+  console.log(pID);
+  Post.findById(pID, (err, post) => {
+    if (err) { return next(err); }
+    res.render('posts/edit', { post: post });
+  });
+});
+
+router.post('/new/:postID', (req, res, next) => {
+  const pId = req.params.postID;
+  const user = req.user;
+
+  /*
+   * Create a new object with all of the information from the request body.
+   * This correlates directly with the schema of Product
+   */
+  const updates = {
+    title: req.body.postTitle,
+    content: req.body.postContent,
+    user_id: user._id,
+    user_name: user.username
+  };
+
+  Post.findByIdAndUpdate(pId, updates, (err, post) => {
+    if (err) { return next(err); }
+    return res.redirect('/timeline');
+  });
+});
+
+/* DELETE ONE post */
+
+router.post('/new/:postID/delete', (req, res, next) => {
+  const pID = req.params.postID;
+  const user = req.user;
+
+  Post.findByIdAndRemove(pID, (err, post) => {
+    if (err) { return next(err); }
+    return res.redirect('/timeline');
   });
 });
 

@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+.postContent{
+  /* max-width: 30%;
+  min-width: 30%;
+  resize:horizontal; */
+}

@@ -25,25 +25,20 @@ router.get('/', (req, res, next) => {
   User
     .findOne({ username: user.username }, '_id username')
     .exec((err, user) => {
-      if (err) {
-        return next(err);
-      }
       if (!user) { return; }
+
       Post.find({ 'user_name': user.username })
         .sort({ created_at: -1 })
         .exec((err, posts) => {
-          if (err) {
-            return next(err);
-          }
           res.render('posts/index',
             {
               username: user.username,
               posts,
               moment,
+
               name: user.name,
               title: posts.title,
-              content: posts.content,
-              postId: posts.ObjectID
+              content: posts.content
 
             });
         });
