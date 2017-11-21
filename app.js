@@ -19,6 +19,7 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 const add = require('./routes/add');
 const timeline = require('./routes/timeline');
+const explore = require('./routes/explore');
 
 const app = express();
 
@@ -85,6 +86,7 @@ app.use('/', index);
 app.use('/auth', auth);
 app.use('/add', add);
 app.use('/timeline', timeline);
+app.use('/explore', explore);
 
 // -- 404 and error handler
 

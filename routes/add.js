@@ -54,6 +54,7 @@ router.post('/new', upload.single('photo'), (req, res, next) => {
     const postInfo = {
       title: req.body.postTitle,
       content: req.body.postContent,
+      postStatus: req.body.postStatus,
       picture: pic,
       location: loc,
       user_id: user._id,

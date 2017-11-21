@@ -13,6 +13,10 @@ const postSchema = new Schema({
     type: String
     // required: [true, "Content can't be empty"]
   },
+  postStatus: {
+    type: String
+    // required: [true, "Content can't be empty"]
+  },
   picture: {
     pic_path: String,
     pic_name: String

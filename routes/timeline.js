@@ -49,4 +49,5 @@ router.get('/', (req, res, next) => {
 router.get('/map', function (req, res, next) {
   res.render('maps/global', { user: req.user });
 });
+
 module.exports = router;
