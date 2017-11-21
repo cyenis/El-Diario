@@ -21,9 +21,12 @@ box-shadow: 0;
 display: inline;
 }
 
-#map {
+ #map {
         height: 400px;
-        width: 400px
-      }
+        width: 100%;
+       }
 
-   
+.photo {
+ height: auto
+ width: 100%;
+ }

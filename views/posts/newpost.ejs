@@ -43,13 +43,16 @@
             <label for="cover-photo">Cover photo:</label>
             <input id="file" type="file" name="photo" capture="camera" accept=" image/* ">
             <br>
-            <input type="text" id="lat" readonly="yes" value="">
+            <input type="text" id="lat" name="latitude" readonly="yes" value="">
             <br>
-            <input type="text" id="lng" readonly="yes" value="">
+            <input type="text" id="lng" name="longitude" readonly="yes" value="">
             <br>
             <button class="button">Post!</button>
         </form>
         <br>
+
+
+
         <div id="map"></div>
         <% if (typeof(errorMessage) != "undefined") { %>
             <div class="error-message">
@@ -60,11 +63,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k">
     </script>
     <script type="text/javascript" src="../javascripts/maps.js"></script>
-
-
-</body>
-
-</html>
 
 
 </body>

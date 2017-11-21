@@ -43,6 +43,11 @@ router.post('/new', upload.single('photo'), (req, res, next) => {
     pic_name: req.file.originalname
   };
 
+  const loc = {
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
+  };
+
   User.findOne({ username: user.username }).exec((err, user) => {
     if (err) { return; }
 
@@ -50,6 +55,7 @@ router.post('/new', upload.single('photo'), (req, res, next) => {
       title: req.body.postTitle,
       content: req.body.postContent,
       picture: pic,
+      location: loc,
       user_id: user._id,
       user_name: user.username
     };

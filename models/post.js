@@ -18,6 +18,11 @@ const postSchema = new Schema({
     pic_name: String
     // required: [true, "Content can't be empty"]
   },
+  location: {
+    latitude: String,
+    longitude: String
+    // required: [true, "Content can't be empty"]
+  },
 
   user_id: {
     type: Schema.Types.ObjectId,

@@ -23,7 +23,7 @@
     <br>
 
     <div id="container">
-        <img src="<%= post.picture.pic_path %>" width="600px" height="300px">
+        <img src="<%= post.picture.pic_path %>" class='photo'>
         <br> Title:
         <br>
         <%= post.title%>
@@ -32,7 +32,7 @@
             <br>
             <%= post.content %>
 
-
+                <div id="map"></div>
 
 
     </div>
@@ -68,6 +68,26 @@
     <form action="<%= post.id%>/delete/" method="POST">
         <button type="submit">Delete Post</button>
     </form>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k"></script>
+    <script>
+        function initMap() {
+
+            var uluru = { lat: <%= post.location.latitude %>, lng: <%= post.location.longitude %> };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: uluru
+            });
+
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+
+            });
+        }
+        initMap();
+    </script>
 
 
 </body>
