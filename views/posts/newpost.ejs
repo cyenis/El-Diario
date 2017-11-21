@@ -5,6 +5,8 @@
     <title>
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
 </head>
 
 <body>
@@ -22,7 +24,12 @@
     <br>
     <br>
 
+
+
+
+
     <div id="container">
+
 
         <form action="/add/new" method="POST" id="new-post" enctype="multipart/form-data">
             <label for="postTitle">Title</label>
@@ -36,15 +43,23 @@
             <label for="cover-photo">Cover photo:</label>
             <input id="file" type="file" name="photo" capture="camera" accept=" image/* ">
             <br>
+            <input type="text" id="lat" readonly="yes" value="">
+            <br>
+            <input type="text" id="lng" readonly="yes" value="">
+            <br>
             <button class="button">Post!</button>
         </form>
-
+        <br>
+        <div id="map"></div>
         <% if (typeof(errorMessage) != "undefined") { %>
             <div class="error-message">
                 <%= errorMessage %>
             </div>
             <% } %>
     </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k">
+    </script>
+    <script type="text/javascript" src="../javascripts/maps.js"></script>
 
 
 </body>
