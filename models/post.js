@@ -13,8 +13,9 @@ const postSchema = new Schema({
     type: String
     // required: [true, "Content can't be empty"]
   },
-  imgURL: {
-    type: String
+  picture: {
+    pic_path: String,
+    pic_name: String
     // required: [true, "Content can't be empty"]
   },
 

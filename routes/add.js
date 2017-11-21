@@ -5,6 +5,8 @@ const passport = require('passport');
 const router = express.Router();
 
 const moment = require('moment');
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 
 // const ensureLogin = require("connect-ensure-login");
 
@@ -33,13 +35,21 @@ router.get('/new', function (req, res, next) {
 
 /* ADD ONE post */
 
-router.post('/new', (req, res, next) => {
+router.post('/new', upload.single('photo'), (req, res, next) => {
   const user = req.user;
+
+  const pic = {
+    pic_path: `/uploads/${req.file.filename}`,
+    pic_name: req.file.originalname
+  };
+
   User.findOne({ username: user.username }).exec((err, user) => {
     if (err) { return; }
+
     const postInfo = {
       title: req.body.postTitle,
       content: req.body.postContent,
+      picture: pic,
       user_id: user._id,
       user_name: user.username
     };
@@ -54,6 +64,18 @@ router.post('/new', (req, res, next) => {
     });
   });
 });
+
+// router
+//   .post('/new', upload.single('photo'), function (req, res) {
+//     const pic = new Picture({
+//       pic_path: `/uploads/${req.file.filename}`,
+//       pic_name: req.file.originalname
+//     });
+
+//     pic.save((err) => {
+//       res.redirect('/timeline');
+//     });
+//   });
 
 /* SHOW ONE post */
 router.get('/new/:postID', (req, res, next) => {
