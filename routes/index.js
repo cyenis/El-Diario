@@ -12,4 +12,8 @@ router.get('/menu', function (req, res, next) {
   res.render('menu', { title: 'El-Diario' });
 });
 
+router.get('/map', function (req, res, next) {
+  res.render('maps/single', { title: 'My Mapa' });
+});
+
 module.exports = router;
