@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <%= posts[2].location %> -->
+    <%= posts[0].postId %>
+        <h3>My Google Maps Demo</h3>
+        <div id="map"></div>
+        <script>
+            function initMap() {
+                var uluru = { lat: 41.393, lng: 2.190 };
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: uluru
+                });
+
+                let postMarkers = [];
+
+                    // disabling linter because we're templating code
+                    /*eslint-disable */
+                    <% posts.forEach(function (post) { %>
+
+                    // <%= userHash[post.user_id].username %>
+                    // <%= userHash[post.user_id].name %>
+
+                    postMarkers.push(
+                        new google.maps.Marker({
+                            position: {
+                                lat: <%=post.location.latitude %>,
+                                lng:  <%=post.location.longitude %>
+                                },
+                            map: map
+                        })
+                    )
+                    <% }) %>
+                    /*eslint-enable */
+
+                }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k&callback=initMap">
+        </script>
+</body>
+
+</html>

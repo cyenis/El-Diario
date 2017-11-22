@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const passport = require('passport');
 const router = express.Router();
 
 const moment = require('moment');
@@ -22,20 +21,27 @@ router.use((req, res, next) => {
 router.get('/', (req, res, next) => {
   const user = req.user;
 
-  User
-    .findOne({ username: user.username }, '_id username')
+  User.findOne({ username: user.username }, '_id username')
     .exec((err, user) => {
-      if (!user) { return; }
+      if (!user) { return; } else {
+        if (err) {
+          return next(err);
+        };
+      }
 
       Post.find({ 'user_name': user.username })
         .sort({ created_at: -1 })
         .exec((err, posts) => {
-          res.render('posts/index',
+          if (!user) { return; } else {
+            if (err) {
+              return next(err);
+            };
+          }
+          res.render('posts/timeline',
             {
               username: user.username,
               posts,
               moment,
-
               name: user.name,
               title: posts.title,
               content: posts.content

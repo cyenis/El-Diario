@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const passport = require('passport');
 const router = express.Router();
 
 const moment = require('moment');
@@ -13,22 +12,66 @@ const Post = require('../models/post').Post;
 
 router.get('/', (req, res, next) => {
   const user = req.user;
-
   Post.find({ 'postStatus': { $regex: '.*public.*' } })
     .sort({ created_at: -1 })
     .exec((err, posts) => {
-      res.render('posts/index',
+      if (!user) { return; } else {
+        if (err) {
+          return next(err);
+        };
+      }
+      res.render('posts/explore',
+
         {
-          username: posts.user_name,
+          name: user.name,
+
           posts,
           moment,
-          post_status: 'publicPost',
-          name: user.name,
-          title: posts.title,
-          content: posts.content
+          username: posts.user_name
 
         });
     });
 });
 
+// function getMapMarkerFromPost (post) {
+
+// }
+
+router.get('/map', (req, res, next) => {
+  const user = req.user;
+  Post.find({ 'postStatus': { $regex: '.*public.*' } })
+    .exec((err, posts) => {
+      if (!user) { return; } else {
+        if (err) {
+          return next(err);
+        };
+      }
+      var data = {
+        name: user.name,
+        userHash: null,
+        posts: posts,
+        moment: moment,
+        post_status: 'publicPost'
+      };
+
+      var userIds = [];
+      posts.forEach((post) => {
+        userIds.push(post.user_id.toString());
+      });
+
+      User.find(/* { user_id: { $in: userIds } } */)
+        .exec((err, users) => {
+          const userHash = {};
+
+          users.forEach((user) => {
+            userHash[user._id] = user;
+          });
+
+          data.userHash = userHash;
+
+          // var test = data.posts.location;
+          res.render('maps/all', data);
+        });
+    });
+});
 module.exports = router;
