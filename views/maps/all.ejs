@@ -10,9 +10,7 @@
     </style>
 </head>
 
-<body>fdsgfbgnhmfnhdsaghn
-
-
+<body>
     <h3>Global Map Explore</h3>
     <div id="map"></div>
     <script>
@@ -25,6 +23,9 @@
             });
 
             var postMarkers = [];
+
+
+
 
             function bindInfoWindow(marker, map, infowindow, html) {
                 marker.addListener('click', function () {
@@ -79,21 +80,48 @@
 
                 postMarkers.push(marker);
 
-
+                
                        
                         
 
                         <% }); %>
-                        /*eslint-enable */
+                /*eslint-enable */
+                // let markerCluster = new MarkerClusterer(map, postMarkers,
+                //     { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 
-                        
+
+                let mapstyle = [{
+                    url: 'https://googlemaps.github.io/js-marker-clusterer/images/m1.png',
+                    height: 53,
+                    width: 52,
+                    anchor: [-18, 0],
+                    textColor: '#ffffff',
+                    textSize: 10,
+                    iconAnchor: [15, 48]
+                }]
 
 
+            markerClusterer = new MarkerClusterer(map, postMarkers, {
+                maxZoom: 18,
+                gridSize: 40,
+                styles: mapstyle,
+                imagePath: '../images/m'
+            });
 
-                }
+            google.maps.event.addListener(markerClusterer, 'clusterclick', function (cluster) {
+                map.setCenter(cluster.getCenter());
+                map.setZoom(map.getZoom() + 1);
+            });
+
+
+        }
+
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k&callback=initMap">
     </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+
 </body>
 
 </html>

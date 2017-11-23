@@ -4,10 +4,28 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: String,
-  password: String,
-  name: String,
-  email: String
+  username: {
+    type: String
+    // required: [true, "Title can't be empty"]
+  },
+  password: {
+    type: String
+    // required: [true, "Title can't be empty"]
+  },
+  name: {
+    type: String
+    // required: [true, "Title can't be empty"]
+  },
+  email: {
+    type: String
+    // required: [true, "Title can't be empty"]
+  },
+  picture: {
+    pic_path: String,
+    pic_name: String
+    // required: [true, "Content can't be empty"]
+  }
+
   // @todo add posts,photos-id
   // @todo add markers
   // @todo add profile picture
