@@ -61,6 +61,9 @@ router.get('/map', (req, res, next) => {
 
       User.find(/* { user_id: { $in: userIds } } */)
         .exec((err, users) => {
+          if (err) {
+            return next(err);
+          }
           const userHash = {};
 
           users.forEach((user) => {
