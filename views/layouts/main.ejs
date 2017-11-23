@@ -3,52 +3,98 @@
 
 <head>
   <link rel='stylesheet' href='/stylesheets/style.css' />
+
 </head>
 
 <body>
-  <% if (user) { %>
-    <p>logged in as
-      <%=user.username%>
-    </p>
+  <div class="container">
+
+    <!-- Top bar     -->
+    <div class="topbar">
+
+      <nav class="nav-list">
+        <!--burger left menu-->
+
+        <div>
+          <a href="/">Home</a>
+          <a href="/menu">Menu</a>
+          <a href="/explore">Explore</a>
+          <a href="/explore/map">Map</a>
+          <a href="/add">Add</a>
+          <a href="/auth/signup">Signup</a>
+          <a href="/timeline">Timeline</a>
+
+        </div>
+
+      </nav>
+
+      <div id="nav_list">
+        <!--Burger left-->
+
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+      </div>
+
+      <div class="loguser">
+
+        <% if (user) { %>
+          <p>logged in as
+            <%=user.username%>
+          </p>
+
+
+          <form action="/auth/logout" method="post">
+            <button>logout</button>
+          </form>
+      </div>
+
+
+    </div>
+
+
+
 
     <a href="/">
       <button name="button" class='button'>Home</button>
     </a>
-
-    <a href="/menu">
-      <button name="button" class='button'>Menu</button>
-    </a>
-
-    <a href="/timeline">
-      <button name="button" class='button'>Timeline</button>
-    </a>
-
-    <a href="/explore">
-      <button name="button" class='button'>Explore</button>
-    </a>
-
-    <a href="/explore/map">
-      <button name="button" class='button'>Map</button>
-    </a>
-
-    <a href="/add">
-      <button name="button" class='button'>Add</button>
-    </a>
-
-    <a href="/auth/signup">
-      <button name="button" class='button'>SignUp</button>
-    </a>
-    <a href="/auth/login">
-      <button name="button" class='button'>Login</button>
-    </a>
-
     <form action="/auth/logout" method="post">
       <button>logout</button>
     </form>
     <% } %>
-      <hr/>
-      <%- body %>
-        <hr/> Copyright © 2017 Jordi & Constantinos
+
+
+
+
+
+
+
+
+      <div class="realbody">
+        <%- body %>
+          <div/>
+
+
+
+
+
+
+
+
+
+          <div class="pointlessfooter">
+            Copyright © 2017 Jordi & Constantinos</div>
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+          <script>
+            $(document).ready(function () {
+              $("#nav_list").click(function () {
+                $(".nav-list").slideToggle();
+              });
+            });</script>
+
+      </div>
 </body>
 
 </html>
