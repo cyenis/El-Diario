@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+    </h1>
+    <p>Welcome to your Profile
+    </p>
+
+
+    <br>
+    <div>
+        Hello
+        <%= user.username%> this is your profile!
+    </div>
+    <br>
+    <br>
+
+    <div>
+        <img src="<%= user.photo.pic_path %>" class='profie-photo'>
+        <br> Name:
+        <%= user.name%>
+            </br>
+            Email:
+            <%= user.email %>
+                </br>
+                Username:
+                <%= user.username %>
+
+    </div>
+    <br>
+
+    </a>
+    <br>
+    <a href="/auth/profile/<%= user.id%>/edit/">Edit Profile</a>
+
+    <form action="<%= user.id%>/delete/" method="POST">
+        <button type="submit">Delete User</button>
+    </form>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+    </h1>
+    <p>Edit Profile
+    </p>
+
+
+    <br>
+    <div>
+        <img src="<%= user.photo.pic_path %>" class='profie-photo'>
+    </div>
+
+
+    <div id="container">
+
+        <form action="/auth/profile/<%= user.id%>/edit" method="POST" id="edit-user" enctype="multipart/form-data">
+
+            <label for="profil-photo">Cover photo:</label>
+            <input id="file" type="file" name="photo" capture="camera" accept=" image/* ">
+            <br>
+            <br>
+            <br>
+            <label for="name">Name</label>
+            <br>
+            <input type="text" name="name" maxlength="140" value=<%=user.name%>>
+            <br>
+            <label for="email">Email</label>
+            <br>
+            <input type="text" name="email" maxlength="600" class="email" value=<%=user.email%>>
+            <br>
+            <br>
+
+            <button class="button">Update</button>
+        </form>
+
+        <% if (typeof(errorMessage) != "undefined") { %>
+            <div class="error-message">
+                <%= errorMessage %>
+            </div>
+            <% } %>
+    </div>
+
+
+</body>
+
+</html>

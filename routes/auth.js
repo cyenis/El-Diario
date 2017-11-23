@@ -16,9 +16,10 @@ const bcryptSalt = 10;
 
 router.use((req, res, next) => {
   if (req.user && req.path !== '/logout') {
+    return next();
+  } else {
     res.redirect('/');
   }
-  next();
 });
 
 router.get('/login', function (req, res, next) {
@@ -44,18 +45,14 @@ router.get('/signup', (req, res, next) => {
   res.render('auth/signup', data);
 });
 
-router.post('/signup', upload.single('photo'), (req, res, next) => {
-  const pic = {
-    pic_path: `/uploads/${req.file.filename}`,
-    pic_name: req.file.originalname
-  };
-
-  const userInfo = {
-    username: req.body.username,
-    password: req.body.password,
-    name: req.body.name,
-    email: req.body.email,
-    picture: pic
+router.post('/signup', (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const name = req.body.name;
+  const email = req.body.email;
+  const photo = {
+    pic_path: 'http://facebookcraze.com/wp-content/uploads/2010/10/alternative-facebook-profile-picture-superman-funny-joke.jpg',
+    pic_name: 'Default Profile'
   };
 
   if (username === '' || password === '') {
@@ -83,7 +80,13 @@ router.post('/signup', upload.single('photo'), (req, res, next) => {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    const newUser = new User(userInfo);
+    const newUser = new User({
+      username,
+      password: hashPass,
+      name,
+      email,
+      photo
+    });
 
     newUser.save((err) => {
       if (err) {
@@ -103,6 +106,52 @@ router.post('/signup', upload.single('photo'), (req, res, next) => {
 router.post('/logout', (req, res, next) => {
   req.logout();
   res.redirect('/auth/login');
+});
+
+// Profile
+router.get('/profile/:userID', (req, res, next) => {
+  const uID = req.params.userID;
+  console.log(uID);
+  User.findById(uID, (err, user) => {
+    if (err) { return next(err); }
+    res.render('auth/profile', { user: user });
+  });
+});
+
+// Edit Profile
+router.get('/profile/:userID/edit', (req, res, next) => {
+  const uID = req.params.userID;
+  console.log(uID);
+  User.findById(uID, (err, user) => {
+    if (err) { return next(err); }
+    res.render('auth/edit', { usert: user });
+  });
+});
+
+router.post('/profile/:userID/edit', upload.single('photo'), (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const name = req.body.name;
+  const email = req.body.email;
+  const photo = {
+    pic_path: `/uploads/${req.file.filename}`,
+    pic_name: req.file.originalname
+  };
+
+  const newProfile = {
+    username,
+    password,
+    name,
+    email,
+    photo
+  };
+
+  User.findOneAndUpdate({ _id: req.user._id }, { $set: newProfile }, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/menu');
+  });
 });
 
 module.exports = router;

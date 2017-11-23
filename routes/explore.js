@@ -20,19 +20,37 @@ router.get('/', (req, res, next) => {
           return next(err);
         };
       }
-      res.render('posts/explore',
 
-        {
-          name: user.name,
+      var data = {
+        name: user.name,
 
-          posts,
-          moment,
-          username: posts.user_name
+        posts,
+        moment,
+        username: posts.user_name
+      };
 
+      var userIds = [];
+      posts.forEach((post) => {
+        userIds.push(post.user_id.toString());
+      });
+
+      User.find(/* { user_id: { $in: userIds } } */)
+        .exec((err, users) => {
+          if (err) {
+            return next(err);
+          }
+          const userHash = {};
+
+          users.forEach((user) => {
+            userHash[user._id] = user;
+          });
+
+          data.userHash = userHash;
+
+          res.render('posts/explore', data);
         });
     });
 });
-
 // function getMapMarkerFromPost (post) {
 
 // }

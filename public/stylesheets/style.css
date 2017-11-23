@@ -27,10 +27,14 @@ display: inline;
        }
 
 .photo {
- height: auto
+ height: auto;
  width: 100%;
  }
 
+ .profie-photo{
+ height: auto;
+ width: 10%;
+ }
 
 
  /* FACEBOOK */
@@ -267,6 +271,12 @@ h1 {
 }
 
 .realbody{
+height: 100%;
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
 }
 
 .container{
@@ -276,4 +286,143 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-direction:column;
+}
+
+
+
+
+/* TIMELINE */
+
+ .item {
+    width: 380px;
+    margin: 10px;
+    float: left;
+    margin-top:10px;
+    background-color:#ffffff;
+    border:solid 1px #B4BBCD;
+    min-height:50px;
+    text-align:justify;
+    word-wrap:break-word; 
+}
+ .item  .cont_pic{
+    margin:10px;
+    padding: 20px;
+    position: relative;
+}
+ .item  .cont_pic .like_pic {
+    position: absolute;
+    right: 0;
+    margin: 0 20px;
+    border: 1px solid #000;
+    background: #1c1c1c;
+    border-radius: 5px;
+    cursor:pointer;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    color: #FFF;
+    font-size: 23px;
+    font-weight: 100;
+    line-height: 36px;
+    opacity: 0.4;
+    transition: all 0.3s;
+}
+ .item  .cont_pic .like_pic:hover {
+    opacity: 0.8;
+}
+ .item .info{
+    color: #111;
+    z-index: 10;
+    position: relative;
+    padding: 10px;
+    overflow: hidden;
+}
+ .item .info .up_cont{
+    border-bottom: 1px dotted #ccc;
+}
+ .item .info .up_cont h3{
+    
+    font-size: 24px;
+}
+ .item .info .down_cont .left_icons .view{
+    display: inline-block;
+    float: left;
+    padding-left: 24px;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+ .item .info .down_cont .left_icons .like{
+    display: inline-block;
+    float: left;
+    padding-left: 24px;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+ .item .info .down_cont .left_icons .comment{
+    display: inline-block;
+    float: left;
+    padding-left: 24px;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+ .item .info .down_cont .timeago{
+    float: right;
+    margin-top: 6px;
+}
+
+.rightCorner { 
+    background-image: url("http://ciftslash.com/upload/MQ/timeline_sol.png");
+    display: block;
+    height: 15px;
+    margin-left: 380px;
+    margin-top: 8px;
+    padding: 0;
+    vertical-align: top;
+    width: 13px;
+    z-index:2;
+    position: absolute;
+}
+.leftCorner{
+    background-image: url("http://ciftslash.com/upload/MQ/timeline_sag.png");
+    display: block;
+    height: 15px;
+    width: 13px;
+    margin-left: -13px;
+    margin-top: 8px;
+    position: absolute;
+    z-index:2;
+}
+
+
+
+
+
+
+/* post profile with pic CARD */
+.card__header{
+  display: flex;
+  margin-bottom: 7px;
+}
+
+.card__image {
+  margin-right: 10px;
+    margin-left: 10px;
+        margin-top: 10px;
+
+
+}
+
+.card__image img {
+  width: 50px;
+  height: auto;
+}
+
+.card__name{
+  color: #365899;
+  margin: 3px 0 0 0;
+}
+
+.card__time {
+  color: #90949c
 }

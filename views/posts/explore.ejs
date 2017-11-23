@@ -8,61 +8,96 @@
 </head>
 
 <body>
-    <div id="container">
+    <div>
         <h2>Hi
             <%= name %>
         </h2>
     </div>
 
-    <div id="container">
+    <div>
         <a href="/add/new">New post</a>
         <a href="/logout">Logout</a>
 
-        <h2>@
-            <%= username %> posts</h2>
+        <h2> #Ironline</h2>
+        <br>
 
-        <% posts.forEach(function(post) { %>
-            <a href="/add/new/<%= post.id %>">
-                <div class="post-container">
+    </div>
 
-                    <p class="post-author">
 
-                        Author Name:
-                        <%= post.user_name %>
-                            <%= post.postId %>
-                    </p>
 
-                    <p class="post-title">
-                        Title:
-                        <br>
+    <% posts.forEach(function(post) { %>
+
+
+        <a href="/add/new/<%= post.id %>"></a>
+
+        <!-- item -->
+        <div class="item ">
+
+            <div class="card__header">
+                <div class="card__image">
+                    <img src="<%= userHash[post.user_id].photo.pic_path %>" alt="profile pic" />
+                </div>
+                <div class="card__name-time">
+                    <h4 class="card__name">
+
+                        <%= userHash[post.user_id].name %>
+                    </h4>
+                    <div class="card__time">
+                        12:55
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="cont_pic" style="background-image: url(<%= post.picture.pic_path %>);height:150px">
+                <div class="like_pic">
+                    <i class="fa fa-heart-o"></i>
+                </div>
+            </div>
+
+            <!-- #cont_pic -->
+            <div class="info">
+                <div class="up_cont">
+                    <h3>
                         <%= post.title %>
-                    </p>
 
-                    <p class="post content">
-                        Content:
-                        <br>
+                    </h3>
+                    <p>
                         <%= post.content %>
                     </p>
+                </div>
 
-                    <p class="post-cover-picture">
-
-                        Picture:
-                        <br>
-                        <img src="<%= post.picture.pic_path %>" height="100px" class='photo'>
-                    </p>
-
-                    <p class="post location">
-
-                        Location:
-                        <br>
-                        <%= post.location %>
-                    </p>
-
-                    <p class="date">
+                <!-- #up_cont -->
+                <div class="down_cont">
+                    <div class="left_icons">
+                        <span class="comment fa fa-comment"> 22</span>
+                        <span class="view fa fa-eye"> 132</span>
+                        <span class="like fa fa-heart"> 45</span>
+                    </div>
+                    <!-- #left_icons -->
+                    <time class="timeago">
                         <%= moment(post.created_at).format("LL, LTS") %>
-                    </p>
-            </a>
-            <hr>
+                    </time>
+                </div>
+                <!-- #down_cont -->
             </div>
-            <% }) %>
-    </div>
+            <!-- #info -->
+        </div>
+
+
+
+        <hr>
+
+        <% }) %>
+
+
+
+
+</body>
+
+</html>
