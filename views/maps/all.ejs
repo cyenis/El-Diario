@@ -12,27 +12,26 @@
 
 <body>fdsgfbgnhmfnhdsaghn
 
-    <%= posts[0].location %>
-        <%= posts[0].postId %>
-            <h3>My Google Maps Demo</h3>
-            <div id="map"></div>
-            <script>
-                function initMap() {
-                    var ironhack = { lat: 41.3977243, lng: 2.1905750999999998 };
 
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 18,
-                        center: ironhack
-                    });
+    <h3>Global Map Explore</h3>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var ironhack = { lat: 41.3977243, lng: 2.1905750999999998 };
 
-                    var postMarkers = [];
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 18,
+                center: ironhack
+            });
 
-                    function bindInfoWindow(marker, map, infowindow, html) {
-                        marker.addListener('click', function () {
-                            infowindow.setContent(html);
-                            infowindow.open(map, this);
-                        });
-                    }
+            var postMarkers = [];
+
+            function bindInfoWindow(marker, map, infowindow, html) {
+                marker.addListener('click', function () {
+                    infowindow.setContent(html);
+                    infowindow.open(map, this);
+                });
+            }
 
 
                     // disabling linter because we're templating code
@@ -43,42 +42,42 @@
                         // <%= userHash[post.user_id].username %>
                         // <%= userHash[post.user_id].name %>
                         var position = {
-                            lat: <%=post.location.latitude %>,
-                            lng:  <%=post.location.longitude %>
+                    lat: <%=post.location.latitude %>,
+                    lng:  <%=post.location.longitude %>
                                 };
 
-                        var marker = new google.maps.Marker({
-                            position: position,
-                            map: map
-                        });
+                var marker = new google.maps.Marker({
+                    position: position,
+                    map: map
+                });
 
-                        marker.setIcon(({
-                            url: '../images/map-marker-photo.png',
-                            size: new google.maps.Size(50, 50),
-                            origin: new google.maps.Point(0, 0),
-                            anchor: new google.maps.Point(17, 34),
-                            scaledSize: new google.maps.Size(50, 50)
-                        }));
+                marker.setIcon(({
+                    url: '../images/map-marker-photo.png',
+                    size: new google.maps.Size(50, 50),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(50, 50)
+                }));
 
-                        var contentString =
-                            `<div class="post-preview"> 
+                var contentString =
+                    `<div class="post-preview"> 
                                 <h1><%= post.title %></h1>
                                 <h2><%= userHash[post.user_id].name %></h2>
                                  <p>Post: <a href="http://localhost:3000/add/new/<%=post._id%>"><%= post.title %></a>  </p>                  
                                  <img src="<%= post.picture.pic_path %>" class='map-photo'  >`
 
-                        var infowindow = new google.maps.InfoWindow({
-                            content: contentString
-                        });
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
 
-                        // marker.addListener('click', function () {
-                        //     infowindow.open(map, marker);
-                        //     // window.location.href = `/add/new/<%=post._id%>`;
-                        // });
+                // marker.addListener('click', function () {
+                //     infowindow.open(map, marker);
+                //     // window.location.href = `/add/new/<%=post._id%>`;
+                // });
 
-                        bindInfoWindow(marker, map, infowindow, contentString);
+                bindInfoWindow(marker, map, infowindow, contentString);
 
-                        postMarkers.push(marker);
+                postMarkers.push(marker);
 
 
                        
@@ -92,9 +91,9 @@
 
 
                 }
-            </script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k&callback=initMap">
-            </script>
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k&callback=initMap">
+    </script>
 </body>
 
 </html>
