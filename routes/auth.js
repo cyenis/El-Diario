@@ -130,7 +130,6 @@ router.get('/profile/:userID/edit', (req, res, next) => {
 
 router.post('/profile/:userID/edit', upload.single('photo'), (req, res, next) => {
   const username = req.body.username;
-  const password = req.body.password;
   const name = req.body.name;
   const email = req.body.email;
   const photo = {
@@ -140,9 +139,8 @@ router.post('/profile/:userID/edit', upload.single('photo'), (req, res, next) =>
 
   const newProfile = {
     username,
-    password,
-    name,
-    email,
+    name: name,
+    email: email,
     photo
   };
 
@@ -150,7 +148,7 @@ router.post('/profile/:userID/edit', upload.single('photo'), (req, res, next) =>
     if (err) {
       return next(err);
     }
-    res.redirect('/menu');
+    res.redirect('/timeline');
   });
 });
 

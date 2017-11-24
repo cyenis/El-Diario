@@ -8,15 +8,40 @@
 </head>
 
 <body>
-    <h1>
-    </h1>
-    <p>Edit Profile
-    </p>
 
 
-    <br>
-    <div>
-        <img src="<%= user.photo.pic_path %>" class='profie-photo'>
+    <div id="profile-container">
+        <div class="header-container">
+            <img src="https://s17.postimg.org/ypm5ye95r/image.jpg" alt="" class="header-image" />
+            <div class="headerprof">
+
+
+            </div>
+        </div>
+        <!-- END header -->
+    </div>
+
+    <div class="overlay-header"></div>
+
+    <div class="bodyprof">
+        <img src="<%= user.photo.pic_path %>" alt="Profile foto" class="body-image" />
+
+
+        <div>
+
+            <br> Name:
+            <%= user.name%>
+                </br>
+                Email:
+                <%= user.email %>
+                    </br>
+                    Username:
+                    <%= user.username %>
+        </div>
+
+
+
+
     </div>
 
 
@@ -24,14 +49,14 @@
 
         <form action="/auth/profile/<%= user.id%>/edit" method="POST" id="edit-user" enctype="multipart/form-data">
 
-            <label for="profil-photo">Cover photo:</label>
+            <label for="profil-photo">Profile photo:</label>
             <input id="file" type="file" name="photo" capture="camera" accept=" image/* ">
             <br>
             <br>
             <br>
             <label for="name">Name</label>
             <br>
-            <input type="text" name="name" maxlength="140" value=<%=user.name%>>
+            <input type="text" name="name" maxlength="180" value=<%=user.name%>>
             <br>
             <label for="email">Email</label>
             <br>

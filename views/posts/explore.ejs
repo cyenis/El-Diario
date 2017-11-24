@@ -8,6 +8,15 @@
 </head>
 
 <body>
+
+    <div class="video-background">
+        <div class="video-foreground">
+            <iframe src="https://www.youtube.com/embed/FOIjvHjK0Rw?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=FOIjvHjK0Rw"
+                frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
     <div>
         <h2>Hi
             <%= name %>
@@ -28,63 +37,60 @@
     <% posts.forEach(function(post) { %>
 
 
-        <a href="/add/new/<%= post.id %>"></a>
+
 
         <!-- item -->
         <div class="item ">
 
-            <div class="card__header">
-                <div class="card__image">
-                    <img src="<%= userHash[post.user_id].photo.pic_path %>" alt="profile pic" />
-                </div>
-                <div class="card__name-time">
-                    <h4 class="card__name">
+            <a href="/auth/profile/<%= userHash[post.user_id]._id %>">
+                <div class="card__header">
+                    <div class="card__image">
+                        <img src="<%= userHash[post.user_id].photo.pic_path %>" alt="profile pic" />
+                    </div>
+                    <div class="card__name-time">
+                        <h4 class="card__name">
 
-                        <%= userHash[post.user_id].name %>
-                    </h4>
-                    <div class="card__time">
-                        12:55
+                            <%= userHash[post.user_id].name %>
+                        </h4>
+                        <div class="card__time">
+                            12:55
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
 
 
+            <a href="/add/new/<%= post.id %>">
+                <div class="post-picture-place">
+                    <img src="<%= post.picture.pic_path %>" alt="profile pic" class="post-picture" />
 
-
-
-
-
-            <div class="cont_pic" style="background-image: url(<%= post.picture.pic_path %>);height:150px">
-                <div class="like_pic">
-                    <i class="fa fa-heart-o"></i>
-                </div>
-            </div>
-
-            <!-- #cont_pic -->
-            <div class="info">
-                <div class="up_cont">
-                    <h3>
-                        <%= post.title %>
-
-                    </h3>
-                    <p>
-                        <%= post.content %>
-                    </p>
                 </div>
 
-                <!-- #up_cont -->
-                <div class="down_cont">
-                    <div class="left_icons">
-                        <span class="comment fa fa-comment"> 22</span>
-                        <span class="view fa fa-eye"> 132</span>
-                        <span class="like fa fa-heart"> 45</span>
+
+                <!-- #cont_pic -->
+                <div class="info">
+                    <div class="up_cont">
+                        <h3>
+                            <%= post.title %>
+                        </h3>
+                        <p>
+                            <%= post.content %>
+                        </p>
                     </div>
-                    <!-- #left_icons -->
-                    <time class="timeago">
-                        <%= moment(post.created_at).format("LL, LTS") %>
-                    </time>
+            </a>
+            <!-- #up_cont -->
+            <div class="down_cont">
+                <div class="left_icons">
+                    <span class="comment fa fa-comment"> 22</span>
+                    <span class="view fa fa-eye"> 132</span>
+                    <span class="like fa fa-heart"> 45</span>
                 </div>
-                <!-- #down_cont -->
+                <!-- #left_icons -->
+                <time class="timeago">
+                    <%= moment(post.created_at).format("LL, LTS") %>
+                </time>
+            </div>
+            <!-- #down_cont -->
             </div>
             <!-- #info -->
         </div>

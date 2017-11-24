@@ -8,43 +8,67 @@
 </head>
 
 <body>
-    <h1>
-    </h1>
+
+
+    <div id="profile-container">
+        <div class="header-container">
+            <img src="https://s17.postimg.org/ypm5ye95r/image.jpg" alt="" class="header-image" />
+            <div class="headerprof">
+
+
+            </div>
+        </div>
+        <!-- END header -->
+    </div>
+
+    <div class="overlay-header"></div>
+
+    <div class="bodyprof">
+        <img src="<%= user.photo.pic_path %>" alt="Profile foto" class="body-image" />
+
+
+        <div>
+
+            <br> Name:
+            <%= user.name%>
+                </br>
+                Email:
+                <%= user.email %>
+                    </br>
+                    Username:
+                    <%= user.username %>
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
     <p>Welcome to your Profile
     </p>
 
 
     <br>
-    <div>
-        Hello
-        <%= user.username%> this is your profile!
-    </div>
-    <br>
-    <br>
-
-    <div>
-        <img src="<%= user.photo.pic_path %>" class='profie-photo'>
-        <br> Name:
-        <%= user.name%>
-            </br>
-            Email:
-            <%= user.email %>
-                </br>
-                Username:
-                <%= user.username %>
-
-    </div>
-    <br>
-
     </a>
     <br>
-    <a href="/auth/profile/<%= user.id%>/edit/">Edit Profile</a>
-
-    <form action="<%= user.id%>/delete/" method="POST">
-        <button type="submit">Delete User</button>
-    </form>
 
 
+    <% if (user._id) { %>
+
+        <a href="/auth/profile/<%= user.id%>/edit/">Edit Profile</a>
+
+        <form action="<%= user.id%>/delete/" method="POST">
+            <button type="submit">Deactivate Account</button>
+        </form>
+
+        <% } %>
 
 </body>
 
