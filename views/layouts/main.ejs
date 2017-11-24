@@ -2,7 +2,10 @@
 <html>
 
 <head>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+    
+    <link rel='stylesheet' href='/stylesheets/reset.css' />
+  <link rel='stylesheet' href='/stylesheets/newstyle.css' />
 
 </head>
 
@@ -28,7 +31,7 @@
 
       </nav>
 
-      <div id="nav_list">
+      <div id="burguer">
         <!--Burger left-->
 
         <div class="burger-line"></div>
@@ -40,61 +43,46 @@
 
         <% if (user) { %>
           <p>logged in as
-            <%=user.username%>
+            <%= user.username %>
           </p>
 
 
-          <form action="/auth/logout" method="post">
+          <form class="form-logout" action="/auth/logout" method="post">
             <button>logout</button>
           </form>
+          <% } %>
       </div>
 
+
+      <a href="/">
+        <img id="home" src="../images/home.png" alt="passport">
+        <!-- <button name="button" class='button-home'>Home</button> -->
+      </a>
 
     </div>
 
-
-
-
-    <a href="/">
-      <button name="button" class='button'>Home</button>
-    </a>
-    <form action="/auth/logout" method="post">
-      <button>logout</button>
-    </form>
-    <% } %>
-
-
-
-
-
-
-
-
+   
       <div class="realbody">
         <%- body %>
-          <div/>
-
-
-
-
-
-
-
-
-
-          <div class="pointlessfooter">
-            Copyright © 2017 Jordi & Constantinos</div>
-
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-          <script>
-            $(document).ready(function () {
-              $("#nav_list").click(function () {
-                $(".nav-list").slideToggle();
-              });
-            });</script>
-
       </div>
+
+
+
+      <div class="pointlessfooter">
+        Copyright © 2017 Jordi & Constantinos
+      </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+      <script>
+        $(document).ready(function () {
+          $("#nav_list").click(function () {
+            $(".nav-list").slideToggle();
+          });
+        });
+      </script>
+
+      
 </body>
 
 </html>
