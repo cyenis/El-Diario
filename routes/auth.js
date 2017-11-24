@@ -5,20 +5,15 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 
-const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' });
-
-// const ensureLogin = require("connect-ensure-login");
-
 const User = require('../models/user').User;
 
 const bcryptSalt = 10;
 
 router.use((req, res, next) => {
   if (req.user && req.path !== '/logout') {
-    return next();
-  } else {
     res.redirect('/');
+  } else {
+    next();
   }
 });
 
@@ -31,7 +26,7 @@ router.get('/login', function (req, res, next) {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/menu',
-  failureRedirect: '/auth/signup',
+  failureRedirect: '/auth/login',
   failureFlash: true,
   passReqToCallback: true
 }));
@@ -106,50 +101,6 @@ router.post('/signup', (req, res, next) => {
 router.post('/logout', (req, res, next) => {
   req.logout();
   res.redirect('/auth/login');
-});
-
-// Profile
-router.get('/profile/:userID', (req, res, next) => {
-  const uID = req.params.userID;
-  console.log(uID);
-  User.findById(uID, (err, user) => {
-    if (err) { return next(err); }
-    res.render('auth/profile', { user: user });
-  });
-});
-
-// Edit Profile
-router.get('/profile/:userID/edit', (req, res, next) => {
-  const uID = req.params.userID;
-  console.log(uID);
-  User.findById(uID, (err, user) => {
-    if (err) { return next(err); }
-    res.render('auth/edit', { usert: user });
-  });
-});
-
-router.post('/profile/:userID/edit', upload.single('photo'), (req, res, next) => {
-  const username = req.body.username;
-  const name = req.body.name;
-  const email = req.body.email;
-  const photo = {
-    pic_path: `/uploads/${req.file.filename}`,
-    pic_name: req.file.originalname
-  };
-
-  const newProfile = {
-    username,
-    name: name,
-    email: email,
-    photo
-  };
-
-  User.findOneAndUpdate({ _id: req.user._id }, { $set: newProfile }, (err, result) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect('/timeline');
-  });
 });
 
 module.exports = router;

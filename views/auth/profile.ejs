@@ -62,7 +62,7 @@
 
     <% if (user._id) { %>
 
-        <a href="/auth/profile/<%= user.id%>/edit/">Edit Profile</a>
+        <a href="/profile/<%= user.id%>/edit/">Edit Profile</a>
 
         <form action="<%= user.id%>/delete/" method="POST">
             <button type="submit">Deactivate Account</button>

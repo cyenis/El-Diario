@@ -120,8 +120,7 @@ router.post('/new/:postID', upload.single('photo'), (req, res, next) => {
     title: req.body.postTitle,
     content: req.body.postContent,
     user_id: user._id,
-    user_name: user.username,
-    photo
+    user_name: user.username
   };
 
   Post.findByIdAndUpdate(pId, updates, (err, post) => {
