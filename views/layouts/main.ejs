@@ -3,18 +3,17 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-  <!-- <link rel='stylesheet' href='/stylesheets/reset.css' /> -->
-  <!-- <link rel='stylesheet' href='/stylesheets/style.css' />  -->
+  <link rel='stylesheet' href='/stylesheets/reset.css' />
+  <link rel='stylesheet' href='/stylesheets/main.css' /> 
   <!-- <link rel='stylesheet' href='/stylesheets/newstyle.css' /> -->
   <script src="https://use.fontawesome.com/48ce11ca1a.js"></script>
 </head>
 
 <body>
 
-  <div class="container">
-
-    <!-- Top bar     -->
-    <div class="topbar">
+  <!-- Top bar     -->
+  <div class="topbar">
+    <div class="container">
 
       <nav role="navigation">
         <div id="menuToggle">
@@ -24,7 +23,6 @@
           <span></span>
           <span></span>
           <span></span>
-
 
           <ul id="menu">
             <a href="/">
@@ -71,28 +69,28 @@
           </form>
           <% } %>
       </div>
-
     </div>
-  
-    <div class="realbody">
-      <%- body %>
-    </div>
+  </div>
 
-    <div class="pointlessfooter">
+  <div class="realbody">
+    <%- body %>
+  </div>
+
+  <div class="pointlessfooter">
+    <div class="container">
       Copyright © 2017 Jordi & Constantinos
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        $("#nav_list").click(function () {
-          $(".nav-list").slideToggle();
-        });
-      });
-    </script>
-  
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $("#nav_list").click(function () {
+        $(".nav-list").slideToggle();
+      });
+    });
+  </script>
 
 </body>
 

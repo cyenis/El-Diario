@@ -1,49 +1,33 @@
-<!DOCTYPE html>
-<html>
+<div class="container">        
+        
+    <form action="/auth/login" method="POST">
 
-<head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-
-    <div class="wrapper">
-
-        <form action="/auth/login" method="POST">
-
+        <div class="field">
             <label for="username">Username:</label>
             <input class="field1" type="text" name="username" placeholder="Username">
+        </div>
 
+        <div class="field">
             <label for="password">Password:</label>
             <input class="field2" type="password" name="password" placeholder="Password">
-
+        </div>
+        
+        <div class="field">
             <input class="button" type="submit" value="Login">
-
-        </form>
-
-
-        <% if (message) { %>
-            <p>
+            <% if (message) { %>
+            <p class="error-message">
                 <%= message %>
             </p>
             <% } %>
+        </div>
 
-        <p style="margin-bottom:-9px;">
-            <a href="#">Forgot Password? We don't care!</a>
-        </p>
-        <p>
-            Trouble logging in?
-            <a href="#">Repeat the WebDev bootcamp!</a>
-        </p>
+        <p class="form-link"><a href="#">Forgot Password? We don't care!</a></p>
+
+        <p class="form-link">Trouble logging in? <a href="#">Repeat the WebDev bootcamp!</a></p>
 
         <div class="line"></div>
-        <p style="margin-bottom:-9px;">Need a Ironbook Account?</p>
-        <p>
-            <a href="/auth/signup">Sign up here.</a>
-        </p>
 
-    </div>
+        <p class="form-link">Need a Ironbook Account?<a href="/auth/signup">Sign up here.</a></p>
 
-</body>
-
-</html>
+    </form>
+</div>

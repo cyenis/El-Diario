@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-
+<div class="container">        
 
     <div id="profile-container">
         <div class="header-container">
             <img src="https://s17.postimg.org/ypm5ye95r/image.jpg" alt="" class="header-image" />
-            <div class="headerprof">
-
-
-            </div>
+            <div class="headerprof"></div>
         </div>
         <!-- END header -->
     </div>
@@ -26,55 +13,39 @@
     <div class="bodyprof">
         <img src="<%= user.photo.pic_path %>" alt="Profile foto" class="body-image" />
 
-
         <div>
-
-            <br> Name:
-            <%= user.name%>
-                </br>
-                Email:
-                <%= user.email %>
-                    </br>
-                    Username:
-                    <%= user.username %>
+            <p>Name: <%= user.name%></p>
+            <p>Email: <%= user.email %></p>
+            <p>Username: <%= user.username %></p>
         </div>
 
-
-
-
     </div>
 
+    <form action="/profile/<%= user.id%>/edit" method="POST" id="edit-user" enctype="multipart/form-data">
 
-    <div id="container">
-
-        <form action="/profile/<%= user.id%>/edit" method="POST" id="edit-user" enctype="multipart/form-data">
-
+        <div class="field">
             <label for="profil-photo">Profile photo:</label>
             <input id="file" type="file" name="photo" capture="camera" accept=" image/* ">
-            <br>
-            <br>
-            <br>
-            <label for="name">Name</label>
-            <br>
-            <input type="text" name="name" maxlength="180" value=<%=user.name%>>
-            <br>
+        </div>
+
+        <div class="field">
+            <label for="name">Name</label>        
+            <input type="text" name="name" maxlength="180" value="<%=user.name%>">
+        </div>
+        
+        <div class="field">
             <label for="email">Email</label>
-            <br>
-            <input type="text" name="email" maxlength="600" class="email" value=<%=user.email%>>
-            <br>
-            <br>
-
-            <button class="button">Update</button>
-        </form>
-
-        <% if (typeof(errorMessage) != "undefined") { %>
-            <div class="error-message">
+            <input type="text" name="email" maxlength="600" class="email" value="<%=user.email%>">
+        </div>
+        
+        <div class="field">
+            <button class="button">Update</button>    
+            <% if (typeof(errorMessage) != "undefined") { %>
+            <p class="error-message">
                 <%= errorMessage %>
-            </div>
+            </p>
             <% } %>
-    </div>
+        </div>
 
-
-</body>
-
-</html>
+    </form>
+</div>

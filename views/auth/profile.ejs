@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
 
 
     <div id="profile-container">
         <div class="header-container">
             <img src="https://s17.postimg.org/ypm5ye95r/image.jpg" alt="" class="header-image" />
             <div class="headerprof">
-
 
             </div>
         </div>
@@ -26,50 +15,29 @@
     <div class="bodyprof">
         <img src="<%= user.photo.pic_path %>" alt="Profile foto" class="body-image" />
 
-
         <div>
 
-            <br> Name:
+             Name:
             <%= user.name%>
-                </br>
-                Email:
-                <%= user.email %>
-                    </br>
-                    Username:
-                    <%= user.username %>
+            
+            Email:
+            <%= user.email %>
+            
+            Username:
+            <%= user.username %>
         </div>
-
-
-
 
     </div>
 
-
-
-
-
-
-
-
-    <p>Welcome to your Profile
-    </p>
-
-
-    <br>
-    </a>
-    <br>
+    <h2>Welcome to your Profile</h2>
 
 
     <% if (user._id) { %>
 
-        <a href="/profile/<%= user.id%>/edit/">Edit Profile</a>
+    <a href="/profile/<%= user.id%>/edit/">Edit Profile</a>
 
-        <form action="<%= user.id%>/delete/" method="POST">
-            <button type="submit">Deactivate Account</button>
-        </form>
+    <form action="<%= user.id%>/delete/" method="POST">
+        <button type="submit">Deactivate Account</button>
+    </form>
 
-        <% } %>
-
-</body>
-
-</html>
+    <% } %>

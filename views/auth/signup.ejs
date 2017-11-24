@@ -1,30 +1,30 @@
-<form action="/auth/signup" method="POST">
+<div class="container">        
+    <form action="/auth/signup" method="POST">
 
-    <div class="signup bolder">Sign Up</div>
-    <div class="free bolder">It's free and always will be</div>
+        <div class="signup bolder">Sign Up</div>
+        <div class="free bolder">It's free and always will be</div>
 
-    <div class="formbox"></div>
-
-    <label for="username">Username:</label>
-    <input type="text" name="username" class="inputbody in1" placeholder=" Cool username">
-
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password" class="inputbody in2" placeholder="A hard password">
-
-    </div>
-    <div>
-        <label for="name">Name:</label>
-        <input type="text" name="name" class="inputbody in1 fr" placeholder="Full name">
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="text" name="email" class="inputbody in2" placeholder="Email or mobile number">
-
-        <div class="formbox">
-            <div class="bday">Birthday</div>
+        <div class="field">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="inputbody in1" placeholder=" Cool username">
         </div>
-        <div class="formbox">
+
+        <div class="field">
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="inputbody in2" placeholder="A hard password">
+        </div>
+
+        <div class="field">
+            <label for="name">Name:</label>
+            <input type="text" name="name" class="inputbody in1 fr" placeholder="Full name">
+        </div>
+
+        <div class="field">
+            <label for="email">Email:</label>
+            <input type="text" name="email" class="inputbody in2" placeholder="Email or mobile number">
+
+        <div class="field">
+            <div class="bday">Birthday</div>
             <span data-type="selectors">
                 <span>
                     <select title="Month" class="selectbody">
@@ -194,36 +194,25 @@
                 <div class="fb1 why h">Why do I need to provide my birthday?</div>
         </div>
 
-
-    </div>
-
-    <div class="formbox">
-        <div class="agree">
-            By clicking Sign Up, you agree to our
-            <div class="link">Terms</div> and that you have read our
-            <div class="link">Data Use Policy</div>, including our
-            <div class="link">Cookie Use</div>.
+        <div class="field">
+            <div class="agree">
+                By clicking Sign Up, you agree to our
+                <div class="link">Terms</div> and that you have read our
+                <div class="link">Data Use Policy</div>, including our
+                <div class="link">Cookie Use</div>.
+            </div>
         </div>
-    </div>
 
-
-
-
-    <div class="formbox">
-        <input type="submit" value="Signup" class="signbut bolder">
-        <% if (message) { %>
-            <p>
+        <div class="field">
+            <input type="submit" value="Signup" class="signbut bolder">
+            <% if (message) { %>
+            <p class="error-message">
                 <%= message %>
             </p>
             <% } %>
-    </div>
+        </div>
 
+        <p class="form-link">If you already have an account, you can <a href="/auth/login">Login here</a>.</p>
 
-
-
-
-
-
-    <p>If you already have an account, you can
-        <a href="/auth/login">Login here</a>.</p>
-</form>
+    </form>
+</div>

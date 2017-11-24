@@ -1,52 +1,29 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
+<h1><%= title %></h1>
 
-<body>
-    <h1>
-        <%= title %>
-    </h1>
-    <p>Welcome to Menu
-    </p>
-
-
-    <br>
-    <div>
-        <a href="/explore">
-            <input type="submit" value="Explore">
-        </a>
-        <br>
-        <a href="/add">
-            <input type="submit" value="Add">
-        </a>
-        <br>
-        <input type="submit" value="Groups">
-        <br>
-        <a href="/timeline">
-            <input type="submit" value="My Journal">
-        </a>
-        <br>
-        <a href="/profile/<%= user.id %>">
-            <input type="submit" value="My Profile">
-        </a>
-        <br>
-    </div>
-    <br>
-    <br>
+<p>Welcome to Menu</p>
 
 
 
-</body>
+<div>
+    <a href="/explore">
+        <input type="submit" value="Explore">
+    </a>
+    
+    <a href="/add">
+        <input type="submit" value="Add">
+    </a>
+    
+    <input type="submit" value="Groups">
+    
+    <a href="/timeline">
+        <input type="submit" value="My Journal">
+    </a>
+    
+    <a href="/profile/<%= user.id %>">
+        <input type="submit" value="My Profile">
+    </a>
+    
+</div>
 
-</html>
 
-
-</body>
-
-</html>

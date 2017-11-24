@@ -1,121 +1,104 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-    <h1>
-    </h1>
-    <p>Welcome to Show Product
-    </p>
 
 
-    <br>
-    <div>
-        Hello
-        <%= user.username%> what's on your mind?
-    </div>
-    <br>
-    <br>
-
-    <div id="container">
-        <img src="<%= post.picture.pic_path %>" class='photo'>
-        <br> Title:
-        <br>
-        <%= post.title%>
-            </br>
-            Content:
-            <br>
-            <%= post.content %>
+<p>Welcome to Show Product</p>
 
 
-                <br>
-                <br>
-
-                <a href="/add/new/<%= post.id%>/edit/">Edit Post</a>
-
-                <form action="<%= post.id%>/delete/" method="POST">
-                    <button type="submit">Delete Post</button>
-                </form>
-                <br>
-
-                <div id="map"></div>
+<div>
+    Hello
+    <%= user.username%> what's on your mind?
+</div>
 
 
-    </div>
-    <br>
-    <!-- Email -->
-    <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 https://simplesharebuttons.com">
-        <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
-    </a>
 
-    <!-- Facebook -->
-    <a href="http://www.facebook.com/sharer.php?u=https://eldiario.com" target="_blank">
-        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
-    </a>
-
-    <!-- Google+ -->
-    <a href="https://plus.google.com/share?url=https://simplesharebuttons.com" target="_blank">
-        <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
-    </a>
-
-    <!-- Print -->
-    <a href="javascript:;" onclick="window.print()">
-        <img src="https://simplesharebuttons.com/images/somacro/print.png" alt="Print" />
-    </a>
-
-    <!-- Twitter -->
-    <a href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"
-        target="_blank">
-        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
-    </a>
-    <br>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k"></script>
-    <script>
-        function initMap() {
-
-            var uluru = { lat: <%= post.location.latitude %>, lng: <%= post.location.longitude %> };
-
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 16,
-                center: uluru
-            });
+<div id="container">
+    <img src="<%= post.picture.pic_path %>" class='photo'>
+     Title:
+    
+    <%= post.title%>
+        
+        Content:
+        
+        <%= post.content %>
 
 
-            var contentString = `<div class="post-preview"> 
-                                <h1><%= post.title %></h1>`
+            
+            
 
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
+            <a href="/add/new/<%= post.id%>/edit/">Edit Post</a>
 
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
+            <form action="<%= post.id%>/delete/" method="POST">
+                <button type="submit">Delete Post</button>
+            </form>
+            
 
-            });
-
-            marker.setIcon(({
-                url: '/images/map-marker-photo.png',
-                size: new google.maps.Size(50, 50),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(50, 50)
-            }));
-
-            marker.addListener('click', function () {
-                infowindow.open(map, marker);
-            });
-        }
-        initMap();
-    </script>
+            <div id="map"></div>
 
 
-</body>
+</div>
 
-</html>
+<!-- Email -->
+<a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 https://simplesharebuttons.com">
+    <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
+</a>
+
+<!-- Facebook -->
+<a href="http://www.facebook.com/sharer.php?u=https://eldiario.com" target="_blank">
+    <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+</a>
+
+<!-- Google+ -->
+<a href="https://plus.google.com/share?url=https://simplesharebuttons.com" target="_blank">
+    <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
+</a>
+
+<!-- Print -->
+<a href="javascript:;" onclick="window.print()">
+    <img src="https://simplesharebuttons.com/images/somacro/print.png" alt="Print" />
+</a>
+
+<!-- Twitter -->
+<a href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"
+    target="_blank">
+    <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+</a>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k"></script>
+<script>
+    function initMap() {
+
+        var uluru = { lat: <%= post.location.latitude %>, lng: <%= post.location.longitude %> };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: uluru
+        });
+
+
+        var contentString = `<div class="post-preview"> 
+                            <h1><%= post.title %></h1>`
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+
+        });
+
+        marker.setIcon(({
+            url: '/images/map-marker-photo.png',
+            size: new google.maps.Size(50, 50),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(50, 50)
+        }));
+
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+    }
+    initMap();
+</script>

@@ -1,78 +1,61 @@
-<!DOCTYPE html>
-<html>
+<div class="container">
 
-<head>
-    <title>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-</head>
+    <p>Welcome to Add blogpost</p>
 
-<body>
-    <h1>
-    </h1>
-    <p>Welcome to Add blogpost
-    </p>
-
-
-    <br>
     <div>
         Hello
         <%= user.username%> what's on your mind?
     </div>
-    <br>
-    <br>
 
-
-
-
-
-    <div id="container">
-
-
-        <form action="/add/new" method="POST" id="new-post" enctype="multipart/form-data">
+    <form action="/add/new" method="POST" id="new-post" enctype="multipart/form-data">
+    
+        <div class="field">
             <label for="postTitle">Title</label>
-            <br>
             <input type="text" name="postTitle" maxlength="140" placeholder="Read this!!!">
-            <br>
+        </div>
+        
+        <div class="field">  
             <label for="postContent">Content</label>
-            <br>
             <textarea rows="4" cols="50" name="postContent" placeholder="What's going on?"></textarea>
-            <br>
+        </div>
+        
+        <div class="field">
             <label for="postStatus">Public or Private:</label>
             <select name="postStatus">
                 <option value="publicPost">Public</option>
                 <option value="privatePost">Private</option>
             </select>
-            <br>
-
+        </div>
+        
+        <div class="field">
             <label for="cover-photo">Cover photo:</label>
             <input id="file" type="file" name="photo" capture="camera" accept=" image/* ">
-            <br>
-
+        </div>
+        
+        <div class="field">
+            <label for="lat">Latitude:</label>
             <input type="text" id="lat" name="latitude" value="">
-            <br>
+        </div>
+        
+        <div class="field">
+            <label for="lng">Longitude:</label>
             <input type="text" id="lng" name="longitude" value="">
-            <br>
+        </div>
+        
+        <div class="field">
             <button class="button">Post!</button>
-        </form>
-        <br>
-
-
-
-        <div id="map"></div>
-        <% if (typeof(errorMessage) != "undefined") { %>
-            <div class="error-message">
+            <% if (typeof(errorMessage) != "undefined") { %>
+            <p class="error-message">
                 <%= errorMessage %>
-            </div>
+            </p>
             <% } %>
-    </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k">
-    </script>
-    <script type="text/javascript" src="../javascripts/maps.js"></script>
+        </div>
+    </form>
 
 
-</body>
+    <div id="map"></div>
+   
+</div>
 
-</html>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbnybcbBy1raUOu9YsNd5QqNz0WBP_M-k"></script>
+<script type="text/javascript" src="../javascripts/maps.js"></script>
