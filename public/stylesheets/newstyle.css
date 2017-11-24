@@ -90,18 +90,17 @@
   color: #fff;
 }
 
-.button-index {
-  &:hover, &:focus {
-    background-color: #fddb6f;
-    background-image: linear-gradient(top, #ffb94b, #fddb6f);
-  }
-  &:active {
-    outline: none;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
-  }
-  &::-moz-focus-inner {
-    border: none;
-  }
+.button-index:hover,
+.button-index:focus {
+  background-color: #fddb6f;
+  background-image: linear-gradient(top, #ffb94b, #fddb6f);
+}
+.button-index:active {
+  outline: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+}
+.button-index::-moz-focus-inner {
+  border: none;
 }
 
 img.image {

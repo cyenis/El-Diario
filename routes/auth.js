@@ -5,11 +5,6 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 
-const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' });
-
-// const ensureLogin = require("connect-ensure-login");
-
 const User = require('../models/user').User;
 
 const bcryptSalt = 10;
@@ -17,8 +12,9 @@ const bcryptSalt = 10;
 router.use((req, res, next) => {
   if (req.user && req.path !== '/logout') {
     res.redirect('/');
+  } else {
+    next();
   }
-  next();
 });
 
 router.get('/login', function (req, res, next) {
@@ -30,7 +26,7 @@ router.get('/login', function (req, res, next) {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/menu',
-  failureRedirect: '/auth/signup',
+  failureRedirect: '/auth/login',
   failureFlash: true,
   passReqToCallback: true
 }));
@@ -44,18 +40,14 @@ router.get('/signup', (req, res, next) => {
   res.render('auth/signup', data);
 });
 
-router.post('/signup', upload.single('photo'), (req, res, next) => {
-  const pic = {
-    pic_path: `/uploads/${req.file.filename}`,
-    pic_name: req.file.originalname
-  };
-
-  const userInfo = {
-    username: req.body.username,
-    password: req.body.password,
-    name: req.body.name,
-    email: req.body.email,
-    picture: pic
+router.post('/signup', (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const name = req.body.name;
+  const email = req.body.email;
+  const photo = {
+    pic_path: 'http://facebookcraze.com/wp-content/uploads/2010/10/alternative-facebook-profile-picture-superman-funny-joke.jpg',
+    pic_name: 'Default Profile'
   };
 
   if (username === '' || password === '') {
@@ -83,7 +75,13 @@ router.post('/signup', upload.single('photo'), (req, res, next) => {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    const newUser = new User(userInfo);
+    const newUser = new User({
+      username,
+      password: hashPass,
+      name,
+      email,
+      photo
+    });
 
     newUser.save((err) => {
       if (err) {

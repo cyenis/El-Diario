@@ -20,7 +20,7 @@ const userSchema = new Schema({
     type: String
     // required: [true, "Title can't be empty"]
   },
-  picture: {
+  photo: {
     pic_path: String,
     pic_name: String
     // required: [true, "Content can't be empty"]

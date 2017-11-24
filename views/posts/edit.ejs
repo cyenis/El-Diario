@@ -15,16 +15,12 @@
 
 
     <br>
-    <div>
-        Hello
-        <%= user.username%> what's on your mind?
-    </div>
     <br>
     <br>
 
     <div id="container">
 
-        <form action="/add/new/<%= post.id%>" method="POST" id="edit-post">
+        <form action="/add/new/<%= post.id%>" method="POST" id="edit-post" enctype="multipart/form-data">
             <label for="postTitle">Title</label>
             <br>
             <input type="text" name="postTitle" maxlength="140" value=<%=post.title%>>

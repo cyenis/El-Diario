@@ -2,50 +2,69 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
-    
-    <link rel='stylesheet' href='/stylesheets/reset.css' />
-  <link rel='stylesheet' href='/stylesheets/newstyle.css' />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <!-- <link rel='stylesheet' href='/stylesheets/reset.css' /> -->
+  <!-- <link rel='stylesheet' href='/stylesheets/style.css' />  -->
+  <!-- <link rel='stylesheet' href='/stylesheets/newstyle.css' /> -->
+  <script src="https://use.fontawesome.com/48ce11ca1a.js"></script>
 </head>
 
 <body>
+
   <div class="container">
 
     <!-- Top bar     -->
     <div class="topbar">
 
-      <nav class="nav-list">
-        <!--burger left menu-->
+      <nav role="navigation">
+        <div id="menuToggle">
 
-        <div>
-          <a href="/">Home</a>
-          <a href="/menu">Menu</a>
-          <a href="/explore">Explore</a>
-          <a href="/explore/map">Map</a>
-          <a href="/add">Add</a>
-          <a href="/auth/signup">Signup</a>
-          <a href="/timeline">Timeline</a>
+          <input type="checkbox" />
 
+          <span></span>
+          <span></span>
+          <span></span>
+
+
+          <ul id="menu">
+            <a href="/">
+              <li>Home</li>
+            </a>
+            <a href="/explore">
+              <li>IronBlog</li>
+            </a>
+            <a href="/explore/map">
+              <li>Track a Hacker</li>
+            </a>
+
+            <% if (user) { %>
+              <a href="/timeline">
+                <li>My posts</li>
+              </a>
+              <a href="/profile/<%= user.id %>">
+                <li>My profile</li>
+              </a>
+              <a href="/add/new">
+                <li>New post</li>
+              </a>
+              <% } %>
+
+          </ul>
         </div>
-
       </nav>
 
-      <div id="burguer">
-        <!--Burger left-->
-
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
+      <div>
+        <a href="/">
+          <img src="/images/ironbook-header-white.png" alt="ironbook" class="header-logo">
+        </a>
       </div>
 
       <div class="loguser">
 
         <% if (user) { %>
-          <p>logged in as
-            <%= user.username %>
+          <p>
+            <%=user.username%>
           </p>
-
 
           <form class="form-logout" action="/auth/logout" method="post">
             <button>logout</button>
@@ -53,36 +72,28 @@
           <% } %>
       </div>
 
-
-      <a href="/">
-        <img id="home" src="../images/home.png" alt="passport">
-        <!-- <button name="button" class='button-home'>Home</button> -->
-      </a>
-
+    </div>
+  
+    <div class="realbody">
+      <%- body %>
     </div>
 
-   
-      <div class="realbody">
-        <%- body %>
-      </div>
+    <div class="pointlessfooter">
+      Copyright © 2017 Jordi & Constantinos
+    </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
-      <div class="pointlessfooter">
-        Copyright © 2017 Jordi & Constantinos
-      </div>
-
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-      <script>
-        $(document).ready(function () {
-          $("#nav_list").click(function () {
-            $(".nav-list").slideToggle();
-          });
+    <script>
+      $(document).ready(function () {
+        $("#nav_list").click(function () {
+          $(".nav-list").slideToggle();
         });
-      </script>
+      });
+    </script>
+  
+  </div>
 
-      
 </body>
 
 </html>

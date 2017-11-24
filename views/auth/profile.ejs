@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+
+    <div id="profile-container">
+        <div class="header-container">
+            <img src="https://s17.postimg.org/ypm5ye95r/image.jpg" alt="" class="header-image" />
+            <div class="headerprof">
+
+
+            </div>
+        </div>
+        <!-- END header -->
+    </div>
+
+    <div class="overlay-header"></div>
+
+    <div class="bodyprof">
+        <img src="<%= user.photo.pic_path %>" alt="Profile foto" class="body-image" />
+
+
+        <div>
+
+            <br> Name:
+            <%= user.name%>
+                </br>
+                Email:
+                <%= user.email %>
+                    </br>
+                    Username:
+                    <%= user.username %>
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <p>Welcome to your Profile
+    </p>
+
+
+    <br>
+    </a>
+    <br>
+
+
+    <% if (user._id) { %>
+
+        <a href="/profile/<%= user.id%>/edit/">Edit Profile</a>
+
+        <form action="<%= user.id%>/delete/" method="POST">
+            <button type="submit">Deactivate Account</button>
+        </form>
+
+        <% } %>
+
+</body>
+
+</html>

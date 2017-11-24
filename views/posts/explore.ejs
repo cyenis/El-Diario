@@ -8,61 +8,102 @@
 </head>
 
 <body>
-    <div id="container">
+
+    <div class="video-background">
+        <div class="video-foreground">
+            <iframe src="https://www.youtube.com/embed/FOIjvHjK0Rw?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=FOIjvHjK0Rw"
+                frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <div>
         <h2>Hi
             <%= name %>
         </h2>
     </div>
 
-    <div id="container">
+    <div>
         <a href="/add/new">New post</a>
         <a href="/logout">Logout</a>
 
-        <h2>@
-            <%= username %> posts</h2>
+        <h2> #Ironline</h2>
+        <br>
 
-        <% posts.forEach(function(post) { %>
-            <a href="/add/new/<%= post.id %>">
-                <div class="post-container">
-
-                    <p class="post-author">
-
-                        Author Name:
-                        <%= post.user_name %>
-                            <%= post.postId %>
-                    </p>
-
-                    <p class="post-title">
-                        Title:
-                        <br>
-                        <%= post.title %>
-                    </p>
-
-                    <p class="post content">
-                        Content:
-                        <br>
-                        <%= post.content %>
-                    </p>
-
-                    <p class="post-cover-picture">
-
-                        Picture:
-                        <br>
-                        <img src="<%= post.picture.pic_path %>" height="100px" class='photo'>
-                    </p>
-
-                    <p class="post location">
-
-                        Location:
-                        <br>
-                        <%= post.location %>
-                    </p>
-
-                    <p class="date">
-                        <%= moment(post.created_at).format("LL, LTS") %>
-                    </p>
-            </a>
-            <hr>
-            </div>
-            <% }) %>
     </div>
+
+
+
+    <% posts.forEach(function(post) { %>
+
+
+
+
+        <!-- item -->
+        <div class="item ">
+
+            <a href="/profile/<%= userHash[post.user_id]._id %>">
+                <div class="card__header">
+                    <div class="card__image">
+                        <img src="<%= userHash[post.user_id].photo.pic_path %>" alt="profile pic" />
+                    </div>
+                    <div class="card__name-time">
+                        <h4 class="card__name">
+
+                            <%= userHash[post.user_id].name %>
+                        </h4>
+                        <div class="card__time">
+                            12:55
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+
+            <a href="/add/new/<%= post.id %>">
+                <div class="post-picture-place">
+                    <img src="<%= post.picture.pic_path %>" alt="profile pic" class="post-picture" />
+
+                </div>
+
+
+                <!-- #cont_pic -->
+                <div class="info">
+                    <div class="up_cont">
+                        <h3>
+                            <%= post.title %>
+                        </h3>
+                        <p>
+                            <%= post.content %>
+                        </p>
+                    </div>
+            </a>
+            <!-- #up_cont -->
+            <div class="down_cont">
+                <div class="left_icons">
+                    <span class="comment fa fa-comment"> 22</span>
+                    <span class="view fa fa-eye"> 132</span>
+                    <span class="like fa fa-heart"> 45</span>
+                </div>
+                <!-- #left_icons -->
+                <time class="timeago">
+                    <%= moment(post.created_at).format("LL, LTS") %>
+                </time>
+            </div>
+            <!-- #down_cont -->
+            </div>
+            <!-- #info -->
+        </div>
+
+
+
+        <hr>
+
+        <% }) %>
+
+
+
+
+</body>
+
+</html>

@@ -104,14 +104,18 @@ router.get('/new/:postID/edit', (req, res, next) => {
   });
 });
 
-router.post('/new/:postID', (req, res, next) => {
+router.post('/new/:postID', upload.single('photo'), (req, res, next) => {
   const pId = req.params.postID;
   const user = req.user;
-
+  const photo = {
+    pic_path: `/uploads/${req.file.filename}`,
+    pic_name: req.file.originalname
+  };
   /*
    * Create a new object with all of the information from the request body.
-   * This correlates directly with the schema of Product
+   * This correlates directly with the schema of post
    */
+
   const updates = {
     title: req.body.postTitle,
     content: req.body.postContent,
@@ -120,7 +124,9 @@ router.post('/new/:postID', (req, res, next) => {
   };
 
   Post.findByIdAndUpdate(pId, updates, (err, post) => {
-    if (err) { return next(err); }
+    if (err) {
+      return next(err);
+    }
     return res.redirect('/timeline');
   });
 });
